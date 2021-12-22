@@ -1,0 +1,137 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+}
+h6,label{
+    color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.jDvIgD {
+    height: 100vh;
+    object-fit: cover;
+    width: 100vw;
+}
+
+.radio-footer {
+    position: fixed;
+    backdrop-filter: blur(6px);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgb(0, 0, 0, 0.8);
+    height: 84px;
+    width: 100vw;
+    bottom: 0px;
+}
+.radio-footer label:hover{
+    cursor:text;
+}
+
+.radio-footer__info {
+    display: flex;
+    margin: 8px 8px 8px 8px;
+    padding: 8px 8px 8px 8px;
+
+}
+
+.radio-footer__info-song {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left:10px ;
+    margin-right: auto;
+}
+.radio-footer__info-favorite{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.radio-footer__info-listeners{
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-right: 16px;
+}
+
+.radio-footer__info-reproductor {
+    right: 0px;
+}
+
+.radio-footer__info-playbtn {
+    margin-top: auto;
+    margin-bottom: auto;
+    flex-shrink: 3;
+    transform: all 10s;
+}
+
+.radio-footer__info-volume {
+    margin-top: auto;
+    margin-bottom: auto;
+    align-content: center;
+}
+.radio-footer__info-volume-slider {
+    display: inline-block;
+    margin-bottom: auto;
+    align-items: center;
+}
+
+/* input[type="range"]::-webkit-progress-bar {
+    height: 10px;
+    background-color: #fff;
+} */
+
+.radio-footer__info-access {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.radio-footer__info-volume input {
+    margin: 0 8px;
+}
+
+.SuiTypography-Body1 {
+    font-size: 1.2rem;
+}
+
+.svgIcon {
+    
+    font-size: 1.6rem;
+    padding: 8px;
+    color: white;
+}
+
+.svgIcon:hover,::-webkit-slider-thumb:hover {
+    background-color: rgba(56, 55, 55, 0.8);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.chat-container {
+    display: flex;
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    height: 100vh;
+    width: 340px;
+    backdrop-filter: blur(6px);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgb(0, 0, 0, 0.8);
+}
+
+.chat-container__toolbar {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    text-align: center;
+    height: 48px;
+    width: 100vw;
+    font-size: 30px;
+    color: white;
+}
+.chat-container__toolbar-title{
+    margin-top: 8px;
+    padding: 2px;
+    display: inline-block;
+    font-size: 1.95rem;
+    font-family: 'Prompt', sans-serif;
+}
