@@ -1,16 +1,18 @@
 import React, { useState, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Sliderbar } from './Slidebar';
 import '../components/index.css';
+import { uiExitFullscreen, uiOpenFullscreen } from '../actions/ui';
 var cont = 0;
 let temp = 0;
 
 export const AudioNav = () => {
-    const { name,author,listeners} = useSelector(state => state.radio)
+    const { name, author, listeners } = useSelector(state => state.radio)
     const [btnPlay, setBtnPlay] = useState(true)
     const [value, setValue] = useState(100);
     const [src, setSrc] = useState(null);
     const audioElement = useRef();
+    const dispatch = useDispatch();
 
     const togglPlayPause = () => {
 
@@ -40,6 +42,12 @@ export const AudioNav = () => {
             }, 1000);
         }
         setBtnPlay(!btnPlay);
+    }
+    const openFullscreen = () => {
+        dispatch(uiOpenFullscreen())
+    }
+    const exitFullscreen = () => {
+        dispatch(uiExitFullscreen())
     }
 
     // const resumeRadio = () => {
@@ -71,7 +79,7 @@ export const AudioNav = () => {
             </div>
             <div className='radio-footer__info-volume'>
                 <audio ref={audioElement} src={src} ></audio>
-                {value >60?<i className="bi bi-volume-up-fill svgIcon"></i>:<i className="bi bi-volume-down-fill svgIcon"></i>}
+                {value > 60 ? <i className="bi bi-volume-up-fill svgIcon"></i> : <i className="bi bi-volume-down-fill svgIcon"></i>}
                 {/* <i className="bi bi-volume-off-fill svgIcon"></i>    */}
                 <div className="radio-footer__info-volume-slider">
                     <Sliderbar value={value} onChange={e => {
@@ -81,8 +89,8 @@ export const AudioNav = () => {
                 </div>
             </div>
             <div className='radio-footer__info-access'>
-                <i className="bi bi-fullscreen svgIcon"></i>
-                <i className="bi bi-fullscreen-exit svgIcon" width="100px" height="100px" ></i>
+                <i className="bi bi-fullscreen svgIcon" onClick={openFullscreen}></i>
+                <i className="bi bi-fullscreen-exit svgIcon" width="100px" height="100px" onClick={exitFullscreen} ></i>
             </div>
 
 
