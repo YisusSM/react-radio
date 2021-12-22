@@ -83,16 +83,16 @@ export const AudioNav = () => {
                 {value > 60 ?
                     <i className="bi bi-volume-up-fill svgIcon"></i>
                     :
-                    value > 30  ?
+                    value > 30 ?
                         <i className="bi bi-volume-down-fill svgIcon"></i> :
                         <i className="bi bi-volume-off-fill svgIcon"></i>
                 }
-                <div className="radio-footer__info-volume-slider">
-                    <Sliderbar value={value} onChange={e => {
-                        setValue(e.target.value);
-                        handleVolumenChange(e.target.value / 100);
-                    }} />
-                </div>
+            </div>
+            <div className="radio-footer__info-volume-slider">
+                <Sliderbar value={value} onChange={e => {
+                    setValue(e.target.value);
+                    handleVolumenChange(e.target.value / 100);
+                }} />
             </div>
             <div className='radio-footer__info-access'>
                 {!Fullscreen ? <i className="bi bi-fullscreen svgIcon" onClick={openFullscreen}></i> : <i className="bi bi-fullscreen-exit svgIcon" width="100px" height="100px" onClick={exitFullscreen} ></i>}

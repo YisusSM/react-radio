@@ -61,19 +61,27 @@ h6,label{
 .radio-footer__info-playbtn {
     margin-top: auto;
     margin-bottom: auto;
+    margin-right: 36px;
     flex-shrink: 3;
     transform: all 10s;
+}
+.radio-footer__info-playbtn i {
+   font-size: 36px;
 }
 
 .radio-footer__info-volume {
     margin-top: auto;
     margin-bottom: auto;
-    align-content: center;
 }
+.radio-footer__info-volume i {
+    font-size: 32px;
+ }
+
 .radio-footer__info-volume-slider {
-    display: inline-block;
-    margin-bottom: auto;
-    align-items: center;
+    margin-top: auto;
+    margin-bottom: 20px;
+    margin-right: 8px;
+    margin-left: 8px;
 }
 
 /* input[type="range"]::-webkit-progress-bar {
@@ -84,10 +92,12 @@ h6,label{
 .radio-footer__info-access {
     margin-top: auto;
     margin-bottom: auto;
+    margin-right: 32px;
 }
 
 .radio-footer__info-volume input {
-    margin: 0 8px;
+    margin: 0 8px 20px 8px;
+
 }
 
 .SuiTypography-Body1 {
