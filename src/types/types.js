@@ -5,6 +5,8 @@ export const types = {
     uiCloseModal: '[ui] Close Modal',
     uiOpenFullscreen: '[ui] Open Fullscreen',
     uiExitFullscreen: '[ui] Exit Fullscreen',
+    uiChangeBackground: '[ui] Change Background',
+    uiChangeVisibilityChat:'[ui] Change Visibility Chat',
 
     radioGetInfo: '[radio] get information',
 
