@@ -19,11 +19,11 @@ export const AudioNav = () => {
 
         if (btnPlay) {
             console.log(btnPlay, 'play')
-            if (src === 'http://187.147.8.112:2000/listen') {
+            if (src === 'http://187.147.23.242:2000/listen') {
                 audioElement.current.play();
                 clearInterval(temp);
             } else {
-                setSrc('http://187.147.8.112:2000/listen');
+                setSrc('http://187.147.23.242:2000/listen');
                 setTimeout(() => {
                     audioElement.current.play();
                     console.log('hola')

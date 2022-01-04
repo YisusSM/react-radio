@@ -22,11 +22,11 @@ export const Navbar = () => {
     return (
         <>
             <div className="radio-navbar">
-                <i class="bi bi-broadcast svgIcon"></i>
+                <i className="bi bi-broadcast svgIcon"></i>
                 <div className="radio-navbar-icons-container">
                     <div className="radio-navbar-icons-container_icon">
-                        <i class="bi bi-image svgIcon" onClick={handleBackground}></i>
-                        {chat ? <i class="bi bi-chat-left svgIcon" onClick = {handleChatVisibility}></i> : <i class="bi bi-chat-left-text svgIcon" onClick = {handleChatVisibility}></i>}
+                        <i className="bi bi-image svgIcon" onClick={handleBackground}></i>
+                        {chat ? <i className="bi bi-chat-left svgIcon" onClick = {handleChatVisibility}></i> : <i className="bi bi-chat-left-text svgIcon" onClick = {handleChatVisibility}></i>}
 
                     </div>
 

@@ -22,10 +22,10 @@ export const RadioScreen = () => {
     const { Fullscreen, background } = useSelector(state => state.ui);
     const image = [background0, background1, background2, background3, background4, background5, background6];
     const elem = document.documentElement;
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     dispatch(radioStartGetInfo());
-    // }, [dispatch])
+        dispatch(radioStartGetInfo());
+    })
     setInterval(() => {
         dispatch(radioStartGetInfo());
     }, 4000);
