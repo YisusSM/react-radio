@@ -17,19 +17,19 @@ export const AudioNav = () => {
     const dispatch = useDispatch();
 
 
+
+
     const togglPlayPause = () => {
         if (btnPlay) {
             setLoading(true);
             if (src === 'https://low-radio-node.herokuapp.com/listen') {
-                setSrc('https://low-radio-node.herokuapp.com/listen')
-                console.log(audioElement);
                 audioElement.current.play();
                 setTimeout(() => {
                     setLoading(false);
                 }, 8500);
             } else {
                 setLoading(true);
-                setSrc('https://low-radio-node.herokuapp.com/listen');
+                setSrc('https://low-radio-node.herokuapp.com/listen')
                 setTimeout(() => {
                     audioElement.current.play();
                 }, 0.5);
@@ -38,29 +38,20 @@ export const AudioNav = () => {
                 }, 8000);
 
             }
-            // time(!btnPlay);
         }
         else {
-            console.log(btnPlay, 'pause')
             audioElement.current.pause();
-            audioElement.current.src = null;
+           setSrc('null')
         }
         setBtnPlay(!btnPlay);
     }
+
     const openFullscreen = () => {
         dispatch(uiOpenFullscreen())
     }
     const exitFullscreen = () => {
         dispatch(uiExitFullscreen())
     }
-
-    // const resumeRadio = () => {
-    //     audioElement.current.currentTime += cont + 1;
-    //     clearInterval(temp);
-    //     cont = 0;
-    //     togglPlayPause();
-    // }
-
 
     const handleVolumenChange = (e) => {
 
