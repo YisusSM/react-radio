@@ -7,8 +7,13 @@ export const types = {
     uiExitFullscreen: '[ui] Exit Fullscreen',
     uiChangeBackground: '[ui] Change Background',
     uiChangeVisibilityChat:'[ui] Change Visibility Chat',
+    uiChangeVisibilityHelp:'[ui] Change Visibility Help',
+    uiChangeVisibilityGifMode:'[ui] Change Visibility Gif',
+    uiShowError:'[ui] Show Error',
 
     radioGetInfo: '[radio] get information',
+    messageLoad:'[messages] Messages Load',
+    clearMessages:'[messages] Clear All Messages',
 
     eventAddNew: '[event] Add New',
     eventLogout: '[event] Clean Events',

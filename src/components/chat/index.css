@@ -1,0 +1,51 @@
+li {
+    list-style: none;
+}
+
+.message {
+    padding-left: 15px;
+    margin-top: 8px;
+}
+.card{
+    align-content:center;
+    border: 1px solid grey;
+    border-radius: 1px;
+    overflow-x: hidden;
+    margin: 5px 10px 0px 15px;
+}
+
+div::-webkit-scrollbar {
+    scroll-behavior: smooth;
+    /* width of the entire scrollbar */
+}
+
+div::-webkit-scrollbar-track {
+    background: rgba(139, 139, 139, 0.03);
+    /* color of the tracking area */
+}
+
+div::-webkit-scrollbar-thumb {
+    background: rgba(49, 49, 49, 0.6);
+    /* color of the scroll thumb */
+}
+
+div::-webkit-scrollbar-button {
+    display: inline-block;
+    border-style: solid;
+    height: 13px;
+    width: 16px;
+}
+
+/* Up */
+div::-webkit-scrollbar-button:single-button:vertical:decrement {
+    border-width: 0 8px 8px 8px;
+    border-color: transparent transparent #313131 transparent;
+
+}
+
+/* Down */
+div::-webkit-scrollbar-button:single-button:vertical:increment {
+    border-width: 8px 8px 0 8px;
+    background: rgba(139, 139, 139, 0.08);
+    border-color: #313131 transparent transparent transparent;
+}

@@ -19,9 +19,8 @@ import { Navbar } from './Navbar';
 
 export const RadioScreen = () => {
     const dispatch = useDispatch();
-    const { Fullscreen, background } = useSelector(state => state.ui);
+    const { background } = useSelector(state => state.ui);
     const image = [background0, background1, background2, background3, background4, background5, background6];
-    const elem = document.documentElement;
     useEffect(() => {
 
         dispatch(radioStartGetInfo());
@@ -30,26 +29,6 @@ export const RadioScreen = () => {
         dispatch(radioStartGetInfo());
     }, 4000);
 
-    if (Fullscreen) {
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) { /* Safari */
-            elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) { /* IE11 */
-            elem.msRequestFullscreen();
-        }
-    }
-    if (document.fullscreenElement ||
-        document.webkitFullscreenElement ||
-        document.mozFullScreenElement) {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) { /* Safari */
-            document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) { /* IE11 */
-            document.msExitFullscreen();
-        }
-    }
 
     return (
         <>

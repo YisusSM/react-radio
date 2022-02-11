@@ -1,10 +1,10 @@
 import { types } from '../types/types';
 
 const initialState = {
-    name: 'test',
-    author: 'test2',
+    name: 'feliz',
+    author: 'cumple',
     historySong: [],
-    listeners: 496
+    listeners: 0
 }
 
 export const radioReducer = (state = initialState, action) => {

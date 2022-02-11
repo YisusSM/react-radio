@@ -3,44 +3,47 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Sliderbar } from './Slidebar';
 import '../components/index.css';
 import { uiExitFullscreen, uiOpenFullscreen } from '../actions/ui';
-var cont = 0;
-let temp = 0;
+
+
 
 export const AudioNav = () => {
     const { name, author, listeners } = useSelector(state => state.radio)
     const { Fullscreen } = useSelector(state => state.ui)
+    const [loading, setLoading] = useState(false);
     const [btnPlay, setBtnPlay] = useState(true)
     const [value, setValue] = useState(100);
     const [src, setSrc] = useState(null);
     const audioElement = useRef();
     const dispatch = useDispatch();
 
-    const togglPlayPause = () => {
 
+    const togglPlayPause = () => {
         if (btnPlay) {
-            console.log(btnPlay, 'play')
-            if (src === 'http://187.147.23.242:2000/listen') {
+            setLoading(true);
+            if (src === 'http://189.176.252.227:2000/listen') {
+                setSrc('http://189.176.252.227:2000/listen')
+                console.log(audioElement);
                 audioElement.current.play();
-                clearInterval(temp);
+                setTimeout(() => {
+                    setLoading(false);
+                }, 8500);
             } else {
-                setSrc('http://187.147.23.242:2000/listen');
+                setLoading(true);
+                setSrc('http://189.176.252.227:2000/listen');
                 setTimeout(() => {
                     audioElement.current.play();
-                    console.log('hola')
+                }, 0.5);
+                setTimeout(() => {
+                    setLoading(false);
                 }, 8000);
-                clearInterval(temp);
+
             }
             // time(!btnPlay);
         }
         else {
             console.log(btnPlay, 'pause')
             audioElement.current.pause();
-            // time(!btnPlay);
-            // audioElement.current.src = '';
-            temp = setInterval(() => {
-                cont++;
-                console.log(cont);
-            }, 1000);
+            audioElement.current.src = null;
         }
         setBtnPlay(!btnPlay);
     }
@@ -63,18 +66,21 @@ export const AudioNav = () => {
 
         audioElement.current.volume = e;
     }
+
     return (
         <div className='radio-footer__info'>
             <div className="radio-footer__info-favorite">
                 <i className="bi bi-star svgIcon"></i>
             </div>
             <div className='radio-footer__info-song SuiTypography-Body1'>
-                <label>{name}<br />{author}</label>
+                <label>{name}<br />{author === 'BUG BUNNY' ?
+                    <span className="bugbunny">{author}</span> : <span >{author}</span>}</label>
             </div>
             <div className="radio-footer__info-listeners">
                 <label>Listeners: {listeners}</label>
             </div>
             <div className='radio-footer__info-playbtn'>
+                {(loading ? <div className="loader" id="loader"></div> : null)}
                 {btnPlay ? <i className="bi bi-play-fill btnPlay svgIcon" onClick={togglPlayPause}></i> : <i className="bi bi-pause-fill btnPlay svgIcon" onClick={togglPlayPause}></i>}
                 {/* <label onClick={resumeRadio}>Live</label> */}
             </div>
@@ -99,6 +105,6 @@ export const AudioNav = () => {
             </div>
 
 
-        </div>
+        </div >
     )
 }

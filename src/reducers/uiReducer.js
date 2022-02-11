@@ -3,7 +3,10 @@ import { types } from '../types/types';
 const initialState = {
     chat: true,
     Fullscreen: false,
-    background: 0
+    background: 0,
+    help: false,
+    error: '',
+    gif:false
 }
 
 export const uiReducer = (state = initialState, action) => {
@@ -28,7 +31,22 @@ export const uiReducer = (state = initialState, action) => {
         case types.uiChangeVisibilityChat:
             return {
                 ...state,
-                chat:action.payload
+                chat: action.payload
+            }
+        case types.uiShowError:
+            return {
+                ...state,
+                error: action.payload
+            }
+        case types.uiChangeVisibilityHelp:
+            return {
+                ...state,
+                help: action.payload
+            }
+        case types.uiChangeVisibilityGifMode:
+            return {
+                ...state,
+                gif: action.payload
             }
         default:
             return state;

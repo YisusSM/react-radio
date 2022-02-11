@@ -19,3 +19,16 @@ export const uiChangeVisibilityChat = (mode) => ({
     payload:mode
 
 }) 
+export const uiChangeVisibilityHelp = (mode)=>({
+    type: types.uiChangeVisibilityHelp,
+    payload:mode
+})
+export const uiChangeVisibilityGifMode = (mode)=>({
+    type: types.uiChangeVisibilityHelp,
+    payload:mode
+})
+
+export const showError=(err)=>({
+    type:types.uiShowError,
+    payload:err
+})
