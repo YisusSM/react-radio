@@ -20,8 +20,8 @@ export const AudioNav = () => {
     const togglPlayPause = () => {
         if (btnPlay) {
             setLoading(true);
-            if (src === 'http://189.176.252.227:2000/listen') {
-                setSrc('http://189.176.252.227:2000/listen')
+            if (src === 'https://low-radio-node.herokuapp.com/listen') {
+                setSrc('https://low-radio-node.herokuapp.com/listen')
                 console.log(audioElement);
                 audioElement.current.play();
                 setTimeout(() => {
@@ -29,7 +29,7 @@ export const AudioNav = () => {
                 }, 8500);
             } else {
                 setLoading(true);
-                setSrc('http://189.176.252.227:2000/listen');
+                setSrc('https://low-radio-node.herokuapp.com/listen');
                 setTimeout(() => {
                     audioElement.current.play();
                 }, 0.5);
