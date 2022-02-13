@@ -10,19 +10,34 @@ import background3 from '../assets/3.gif'
 import background4 from '../assets/4.gif'
 import background5 from '../assets/5.gif'
 import background6 from '../assets/6.gif'
+import background7 from '../assets/7.gif'
+
 
 import '../components/index.css'
 import { radioStartGetInfo } from '../actions/radio';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navbar } from './Navbar';
+import { onAuthStateChanged } from "firebase/auth";
+import { auth} from '../firebase/firebaseConfig';
+
+import { adminVerify } from '../helpers/auth';
 
 
 export const RadioScreen = () => {
     const dispatch = useDispatch();
     const { background } = useSelector(state => state.ui);
-    const image = [background0, background1, background2, background3, background4, background5, background6];
+    const image = [background0, background1, background2, background3, background4, background5, background6, background7];
     useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                adminVerify(user);
+            } else {
+                
+            }
+        })
+    }, [])
 
+    useEffect(() => {
         dispatch(radioStartGetInfo());
     })
     setInterval(() => {

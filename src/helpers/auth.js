@@ -40,33 +40,37 @@ export const registerWithEmailAndPassword = (email, password, name) => {
 }
 
 export const login = (email, password) => {
-    return (dispatch) => {
+    return () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
                 console.log('inicio sesion', user.displayName)
-                const q = query(collection(db, "users"), where("id", "==", user.uid));
+                adminVerify(user);
 
-                 getDocs(q).then(p => {
-                    p.forEach((doc) => {
-                        // doc.data() is never undefined for query doc snapshots
-                        console.log(doc.id, " => ", doc.data());
-                        dispatch(showError(''));
-                        dispatch(loginUser(user.uid, user.displayName, user.emailVerified,doc.data().admin))
-                    })
-                }
-
-                )
-
-
-                // ...
             })
             .catch((error) => {
                 //   const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorMessage)
             });
+    }
+}
+export const adminVerify = (user) => {
+    return (dispatch) => {
+        console.log(user)
+        const q = query(collection(db, "users"), where("id", "==", user.uid));
+
+        getDocs(q).then(p => {
+            p.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data());
+                dispatch(showError(''));
+                dispatch(loginUser(user.uid, user.displayName, user.emailVerified, doc.data().admin))
+            })
+        }).catch((error) => {
+            console.log(error)
+        })
     }
 }
 

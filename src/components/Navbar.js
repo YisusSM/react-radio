@@ -8,7 +8,7 @@ export const Navbar = () => {
     const { background, chat } = useSelector(state => state.ui)
 
     const handleBackground = () => {
-        var number = Math.floor(Math.random() * (7 - 0)) + 0;
+        var number = Math.floor(Math.random() * (8 - 0)) + 0;
         if (number !== background) {
             dispatch(changeBackground(number));
         } else { handleBackground() }
