@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Low Radio",
+  "name": "Welcome to low radio, here you can listen to lofi type songs and write in the chat with other people.",
   "icons": [
     {
       "src": "favicon.ico",
