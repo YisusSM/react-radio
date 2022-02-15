@@ -40,10 +40,10 @@ const RadioScreen = () => {
 
     const getDataOfSongs = useCallback(() => {
         dispatch(radioStartGetInfo());
-    }, [dispatch])
+    }, [])
     useEffect(() => {
         getDataOfSongs();
-    })
+    },[])
 
     useEffect(() => {
         setInterval(() => {
@@ -51,7 +51,7 @@ const RadioScreen = () => {
             //Funcion que hace una peticion y guarda los datos en redux
             getDataOfSongs();
         }, 3000);
-    }, [getDataOfSongs])
+    }, [])
 
 
 
