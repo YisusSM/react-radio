@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { db } from '../../firebase/firebaseConfig';
 import { onSnapshot } from "firebase/firestore";
 import { collection } from "firebase/firestore";
@@ -10,9 +10,9 @@ import { clearMessages, loadMessages } from '../../actions/messages';
 import { Gif } from './GifsChat/Gif';
 import { HelpCommands } from './HelpCommands';
 
-export const ChatRoom = () => {
+ const ChatRoom = () => {
 
-
+    console.log('hey')
     let messageList;
     const dispatch = useDispatch();
     const { state } = useSelector(state => state.msg)
@@ -40,7 +40,7 @@ export const ChatRoom = () => {
 
 
 
-    messageList = (state ? state.map(state => {
+    messageList = useCallback((state ? state.map(state => {
         // return (!state.admin ? <li className="message" key={state.id}
         // ><span style={{ color: 'grey' }}>{state.author}</span> {state.message}</li> :
         //     <li className="message" key={state.id}
@@ -60,7 +60,7 @@ export const ChatRoom = () => {
                         fontSize: 10,
                         color: 'red'
                     }}>[MOD]</span></span> {state.message}</li>)
-    }) : null)
+    }) : null))
 
     // return (state.gif ? <Gif
     //     key={state.id}
@@ -84,3 +84,5 @@ export const ChatRoom = () => {
 
     )
 }
+
+export default React.memo(ChatRoom)

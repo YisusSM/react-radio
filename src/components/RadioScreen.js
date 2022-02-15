@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { AudioNav } from './AudioNav';
-import { Chat } from './chat/Chat';
+import {Chat} from './chat/Chat';
 
 import background0 from '../assets/0.gif'
 import background1 from '../assets/1.gif'
@@ -10,7 +10,6 @@ import background3 from '../assets/3.gif'
 import background4 from '../assets/4.gif'
 import background5 from '../assets/5.gif'
 import background6 from '../assets/6.gif'
-import background7 from '../assets/7.gif'
 
 
 import '../components/index.css'
@@ -18,37 +17,54 @@ import { radioStartGetInfo } from '../actions/radio';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navbar } from './Navbar';
 import { onAuthStateChanged } from "firebase/auth";
-import { auth} from '../firebase/firebaseConfig';
+import { auth } from '../firebase/firebaseConfig';
 
 import { adminVerify } from '../helpers/auth';
 
 
-export const RadioScreen = () => {
+const RadioScreen = () => {
     const dispatch = useDispatch();
     const { background } = useSelector(state => state.ui);
-    const image = [background0, background1, background2, background3, background4, background5, background6, background7];
+    const image = [background0, background1, background2, background3, background4, background5, background6];
+
+
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 adminVerify(user);
             } else {
-                
+
             }
         })
     }, [])
 
+    const getDataOfSongs = useCallback(() => {
+        dispatch(radioStartGetInfo());
+    }, [dispatch])
     useEffect(() => {
-        dispatch(radioStartGetInfo());
+        getDataOfSongs();
     })
-    setInterval(() => {
-        dispatch(radioStartGetInfo());
-    }, 4000);
+
+    useEffect(() => {
+        setInterval(() => {
+            console.log('hola')
+            //Funcion que hace una peticion y guarda los datos en redux
+            getDataOfSongs();
+        }, 3000);
+    }, [getDataOfSongs])
+
+
+
+
+
+    const backgroundImage = () => {
+        return <img className='jDvIgD' id='bg' src={image[background]} alt="img" />
+    }
 
 
     return (
         <>
-            <img className='jDvIgD' src={image[background]} alt="Mario" />
-
+            {backgroundImage()}
             <Navbar />
 
             <Chat />
@@ -62,3 +78,5 @@ export const RadioScreen = () => {
         </>
     )
 }
+
+export default React.memo(RadioScreen);

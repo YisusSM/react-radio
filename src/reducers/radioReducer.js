@@ -14,7 +14,8 @@ export const radioReducer = (state = initialState, action) => {
                 ...state,
                 name: action.payload.current_track.name,
                 author: action.payload.current_track.author,
-                listeners: action.payload.listeners
+                listeners: action.payload.listeners,
+                historySong:action.payload.history
             }
 
         default:
