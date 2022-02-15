@@ -10,16 +10,13 @@ import { clearMessages, loadMessages } from '../../actions/messages';
 import { Gif } from './GifsChat/Gif';
 import { HelpCommands } from './HelpCommands';
 
- const ChatRoom = () => {
-
-    console.log('hey')
+const ChatRoom = () => {
     let messageList;
     const dispatch = useDispatch();
     const { state } = useSelector(state => state.msg)
     const { error, help } = useSelector(state => state.ui)
 
     useEffect(() => {
-
         const q = query(collection(db, 'room'), orderBy('createdAt', 'desc'), limit(50));
         onSnapshot(q, (snapshot => {
             dispatch(clearMessages());
@@ -37,8 +34,6 @@ import { HelpCommands } from './HelpCommands';
         }))
 
     }, [dispatch])
-
-
 
     messageList = useCallback((state ? state.map(state => {
         // return (!state.admin ? <li className="message" key={state.id}
@@ -74,13 +69,13 @@ import { HelpCommands } from './HelpCommands';
     //             color: 'red'
     //         }}>[MOD]</span></span> {state.message}</li>)
     return (
-     
-            <ul className="chat-container__messages-list">
-                {messageList}
-                {(error ? <li className="message">{error}</li> : null)}
-                {(help ? <HelpCommands /> : null)}
-            </ul>
-     
+
+        <ul className="chat-container__messages-list">
+            {messageList}
+            {(error ? <li className="message">{error}</li> : null)}
+            {(help ? <HelpCommands /> : null)}
+        </ul>
+
 
     )
 }

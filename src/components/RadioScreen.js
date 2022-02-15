@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 
 import { AudioNav } from './AudioNav';
-import {Chat} from './chat/Chat';
+import { Chat } from './chat/Chat';
 
 import background0 from '../assets/0.gif'
 import background1 from '../assets/1.gif'
@@ -25,7 +25,7 @@ import { adminVerify } from '../helpers/auth';
 const RadioScreen = () => {
     const dispatch = useDispatch();
     const { background } = useSelector(state => state.ui);
-    const image = [background0, background1, background2, background3, background4, background5, background6];
+    const image = useMemo(() => [background0, background1, background2, background3, background4, background5, background6], []);
 
 
     useEffect(() => {
@@ -37,21 +37,19 @@ const RadioScreen = () => {
             }
         })
     }, [])
-
-    const getDataOfSongs = useCallback(() => {
+    useEffect(() => {
+        console.log('primero')
         dispatch(radioStartGetInfo());
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    useEffect(() => {
-        getDataOfSongs();
-    },[])
 
     useEffect(() => {
+        console.log('useeffect')
         setInterval(() => {
-            console.log('hola')
             //Funcion que hace una peticion y guarda los datos en redux
-            getDataOfSongs();
+            dispatch(radioStartGetInfo());
         }, 3000);
-    }, [])
+    }, [dispatch])
 
 
 
