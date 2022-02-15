@@ -7,7 +7,7 @@ export const insertMessageFirebase = (message,displayName,admin,url,isGif) => {
     return (dispatch) => {
         var now = new Date();
         try {
-            console.log(displayName,message,admin)
+            // console.log(displayName,message,admin)
              addDoc(collection(db, "room"), {
                 author:displayName,
                 message,

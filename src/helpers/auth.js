@@ -40,19 +40,30 @@ export const registerWithEmailAndPassword = (email, password, name) => {
 }
 
 export const login = (email, password) => {
-    return () => {
+    return (dispatch) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
-                console.log('inicio sesion', user.displayName)
-                adminVerify(user);
+                console.log('inicio sesion', user)
+                const q = query(collection(db, "users"), where("id", "==", user.uid));
+
+                getDocs(q).then(p => {
+                    p.forEach((doc) => {
+                        // doc.data() is never undefined for query doc snapshots
+                        console.log(doc.id, " => ", doc.data());
+                        dispatch(showError(''));
+                        dispatch(loginUser(user.uid, user.displayName, user.emailVerified, doc.data().admin))
+                    })
+                }).catch((error) => {
+                    console.log(error, 'error verify?')
+                })
 
             })
             .catch((error) => {
                 //   const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorMessage)
+                console.log(errorMessage, 'que paos?')
             });
     }
 }
@@ -69,7 +80,7 @@ export const adminVerify = (user) => {
                 dispatch(loginUser(user.uid, user.displayName, user.emailVerified, doc.data().admin))
             })
         }).catch((error) => {
-            console.log(error)
+            console.log(error, 'error verify?')
         })
     }
 }

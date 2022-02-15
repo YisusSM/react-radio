@@ -17,9 +17,10 @@ import { radioStartGetInfo } from '../actions/radio';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navbar } from './Navbar';
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from '../firebase/firebaseConfig';
-
-import { adminVerify } from '../helpers/auth';
+import { auth,db } from '../firebase/firebaseConfig';
+import { collection, where, query, getDocs } from "firebase/firestore";
+import { showError } from '../actions/ui';
+import { loginUser } from '../actions/auth';
 
 
 const RadioScreen = () => {
@@ -31,20 +32,30 @@ const RadioScreen = () => {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                adminVerify(user);
-            } else {
+                const q = query(collection(db, "users"), where("id", "==", user.uid));
 
+                getDocs(q).then(p => {
+                    p.forEach((doc) => {
+                        // doc.data() is never undefined for query doc snapshots
+                        dispatch(showError(''));
+                        dispatch(loginUser(user.uid, user.displayName, user.emailVerified, doc.data().admin))
+                    })
+                }).catch((error) => {
+                    console.log(error, 'error verify?')
+                })
+            } else {
+                console.log('Inicia sesion')
             }
         })
-    }, [])
+        //eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
+
     useEffect(() => {
-        console.log('primero')
         dispatch(radioStartGetInfo());
         //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
-        console.log('useeffect')
         setInterval(() => {
             //Funcion que hace una peticion y guarda los datos en redux
             dispatch(radioStartGetInfo());
