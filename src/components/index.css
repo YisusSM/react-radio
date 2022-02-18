@@ -20,9 +20,10 @@ h6, label, input, li {
 }
 
 .bugbunny {
-    background: linear-gradient(to right, #ffbf00, #cc9808,#ca8401,
-            #d19003, #ffbf00,#ffbf00);
+    background: linear-gradient(to right, #ffbf00, #cc9808, #ca8401,
+            #d19003, #ffbf00, #ffbf00);
     -webkit-text-fill-color: transparent;
+    background-clip: text;
     -webkit-background-clip: text;
     color: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
     -webkit-text-fill-color: transparent;
@@ -151,14 +152,14 @@ h6, label, input, li {
 }
 
 .svgIcon {
-    position:relative;
+    position: relative;
     font-size: 1.6rem;
     padding: 8px;
     border-radius: 50%;
     color: white;
     transition: 0.2s;
     overflow: hidden;
-    
+
 }
 
 
@@ -169,7 +170,7 @@ h6, label, input, li {
 
 
 .chat-container {
-    display:flex;
+    display: flex;
     position: fixed;
     flex-wrap: wrap;
     right: 0px;
@@ -288,7 +289,7 @@ h6, label, input, li {
 
 .loader {
     font-size: 2px;
-    margin:auto;
+    margin: auto;
     margin-left: 8px;
     text-indent: -9999em;
     width: 11em;
@@ -303,8 +304,9 @@ h6, label, input, li {
     position: relative;
     -webkit-animation: load3 1.4s infinite linear;
     animation: load3 1.4s infinite linear;
-  }
-  .loader:before {
+}
+
+.loader:before {
     width: 50%;
     height: 50%;
     background: #FFF;
@@ -313,8 +315,9 @@ h6, label, input, li {
     top: 0;
     left: 0;
     content: '';
-  }
-  .loader:after {
+}
+
+.loader:after {
     background: rgb(0, 0, 0);
     width: 75%;
     height: 75%;
@@ -326,24 +329,96 @@ h6, label, input, li {
     left: 0;
     bottom: 0;
     right: 0;
-  }
-  @-webkit-keyframes load3 {
+}
+
+@-webkit-keyframes load3 {
     0% {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+
     100% {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
-  @keyframes load3 {
+}
+
+@keyframes load3 {
     0% {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+
     100% {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
     }
+}
+
+
+@media screen and (max-width: 700px) {
+    .chat-container {
+        display: flex;
+        position: fixed;
+        height: 500px;
+        width: 100vw;
+        top: 285px;
+        transform: none;
+        transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+    }
+
+    .chat-container__text-area {
+        width: 100vw;
+    }
+
+    .chat-container__toolbar {
+        width: 100vw;
+        height: 5px;
+        top: 100px;
+    }
+
+    .chat-container__toolbar-title {
+        margin: -35px 0px 0px 0px;
+        top: 0px;
+        display: block;
+        font-size: 1.20rem;
+        font-family: 'Prompt', sans-serif;
+    }
+    .chat-container-scroll-to-bottom{
+        height: 315px;
+        width: 100vw;
+    }
+    .chat-container__messages{
+        width: 100vw;
+    }
+
+    .hidden {
+        transform:  translateY(1058px);
+        transition: all 725ms;
+        visibility: hidden;
+
+    }
+
+    .SuiTypography-Body1 {
+        font-size: 15px;
+    }
+   .radio-footer__info-playbtn{
+    margin: 0px;
+   }
+  .radio-footer__info-volume{
+      display: none;
   }
+  .radio-footer__info-access{
+      display: none;
+  }
+   .radio-footer__info-listeners{
+     display: none;
+   }
+   .radio-footer__info-volume-slider{
+       display: none;
+   }
+   .svgIcon:hover, ::-webkit-slider-thumb:hover {
+    background: none;
+    cursor: none;
+}
+}

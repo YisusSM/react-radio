@@ -11,7 +11,7 @@ export const AudioNav = () => {
     const { Fullscreen } = useSelector(state => state.ui)
     const [loading, setLoading] = useState(false);
     const [btnPlay, setBtnPlay] = useState(true)
-    const [value, setValue] = useState(100);
+    const [value, setValue] = useState(50);
     const [src, setSrc] = useState(null);
     const audioElement = useRef();
     const dispatch = useDispatch();
@@ -77,10 +77,10 @@ export const AudioNav = () => {
             </div>
             <div className='radio-footer__info-volume'>
                 <audio ref={audioElement} src={src} ></audio>
-                {value > 60 ?
+                {value > 55 ?
                     <i className="bi bi-volume-up-fill svgIcon"></i>
                     :
-                    value > 30 ?
+                    value > 15 ?
                         <i className="bi bi-volume-down-fill svgIcon"></i> :
                         <i className="bi bi-volume-off-fill svgIcon"></i>
                 }

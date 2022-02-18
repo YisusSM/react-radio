@@ -10,7 +10,6 @@ import background3 from '../assets/3.gif';
 import background4 from '../assets/4.gif';
 import background5 from '../assets/5.gif';
 import background6 from '../assets/6.gif';
-import background8 from '../assets/8.gif';
 
 
 import '../components/index.css'
@@ -27,7 +26,7 @@ import { loginUser } from '../actions/auth';
 const RadioScreen = () => {
     const dispatch = useDispatch();
     const { background } = useSelector(state => state.ui);
-    const image = useMemo(() => [background0, background1, background2, background3, background4, background5, background6,background8], []);
+    const image = useMemo(() => [background0, background1, background2, background3, background4, background5, background6], []);
 
 
     useEffect(() => {
