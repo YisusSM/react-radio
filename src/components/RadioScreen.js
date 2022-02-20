@@ -3,20 +3,13 @@ import React, { useEffect, useMemo } from 'react';
 import { AudioNav } from './AudioNav';
 import { Chat } from './chat/Chat';
 
-import background0Mp4 from '../assets/0.mp4';
-import background0Webm from '../assets/0.webm';
-import background1Mp4 from '../assets/1.mp4';
-import background1Webm from '../assets/1.webm';
-import background2Mp4 from '../assets/2.mp4';
-import background2Webm from '../assets/2.webm';
-import background3Mp4 from '../assets/3.mp4';
-import background3Webm from '../assets/3.webm';
-import background4Mp4 from '../assets/4.mp4';
-import background4Webm from '../assets/4.webm';
-import background5Mp4 from '../assets/5.mp4';
-import background5Webm from '../assets/5.webm';
-import background6Mp4 from '../assets/6.mp4';
-import background6Webm from '../assets/6.webm';
+import background0 from '../assets/0.gif';
+import background1 from '../assets/1.gif';
+import background2 from '../assets/2.gif';
+import background3 from '../assets/3.gif';
+import background4 from '../assets/4.gif';
+import background5 from '../assets/5.gif';
+import background6 from '../assets/6.gif';
 
 
 import '../components/index.css'
@@ -24,7 +17,7 @@ import { radioStartGetInfo } from '../actions/radio';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navbar } from './Navbar';
 import { onAuthStateChanged } from "firebase/auth";
-import { auth, db } from '../firebase/firebaseConfig';
+import { auth,db } from '../firebase/firebaseConfig';
 import { collection, where, query, getDocs } from "firebase/firestore";
 import { showError } from '../actions/ui';
 import { loginUser } from '../actions/auth';
@@ -33,53 +26,8 @@ import { loginUser } from '../actions/auth';
 const RadioScreen = () => {
     const dispatch = useDispatch();
     const { background } = useSelector(state => state.ui);
-    const videoBackground = useMemo(()=>
-    
-        [
-            {
-                id: 0,
-                videomp4: background0Mp4,
-                videowebm: background0Webm
-    
-            },
-            {
-                id: 1,
-                videomp4: background1Mp4,
-                videowebm: background1Webm
-    
-            },
-            {
-                id: 2,
-                videomp4: background2Mp4,
-                videowebm: background2Webm
-    
-            },
-            {
-                id: 3,
-                videomp4: background3Mp4,
-                videowebm: background3Webm
-    
-            },
-            {
-                id: 4,
-                videomp4: background4Mp4,
-                videowebm: background4Webm
-    
-            },
-            {
-                id: 5,
-                videomp4: background5Mp4,
-                videowebm: background5Webm
-    
-            },
-            {
-                id: 6,
-                videomp4: background6Mp4,
-                videowebm: background6Webm
-    
-            },
-        ]
-    ,[])
+    const image = useMemo(() => [background0, background1, background2, background3, background4, background5, background6], []);
+
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
@@ -100,7 +48,7 @@ const RadioScreen = () => {
             }
         })
         //eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    },[])
 
     useEffect(() => {
         dispatch(radioStartGetInfo());
@@ -119,18 +67,9 @@ const RadioScreen = () => {
 
 
     const backgroundImage = () => {
-        return (
-
-            <div key={ videoBackground[background].id}>
-                <video autoPlay muted loop >
-                    <source src={videoBackground[background].videowebm} type="video/webm" />
-                    <source src={videoBackground[background].videomp4} type="video/mp4" />
-                </video>
-            </div>
-
-        )
-
+        return <img className='jDvIgD' id='bg' src={image[background]} alt="img" />
     }
+
     return (
         <div className='container'>
             {backgroundImage()}
