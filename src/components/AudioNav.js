@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Sliderbar } from './Slidebar';
 import '../components/index.css';
@@ -11,10 +11,11 @@ export const AudioNav = () => {
     const { Fullscreen } = useSelector(state => state.ui)
     const [loading, setLoading] = useState(false);
     const [btnPlay, setBtnPlay] = useState(true)
-    const [value, setValue] = useState(50);
+    const [value, setValue] = useState(40);
     const [src, setSrc] = useState(null);
     const audioElement = useRef();
     const dispatch = useDispatch();
+
 
 
 
@@ -41,7 +42,7 @@ export const AudioNav = () => {
         }
         else {
             audioElement.current.pause();
-           setSrc('null')
+            setSrc('null')
         }
         setBtnPlay(!btnPlay);
     }
@@ -57,6 +58,11 @@ export const AudioNav = () => {
 
         audioElement.current.volume = e;
     }
+
+    useEffect(() => {
+        handleVolumenChange(value/100);
+        //eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <div className='radio-footer__info'>

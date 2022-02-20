@@ -72,7 +72,7 @@ const RadioScreen = () => {
 
 
     return (
-        <>
+        <div className='container'>
             {backgroundImage()}
             <Navbar />
 
@@ -84,7 +84,7 @@ const RadioScreen = () => {
 
             </div>
 
-        </>
+        </div>
     )
 }
 
