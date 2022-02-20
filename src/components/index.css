@@ -442,7 +442,7 @@ h6, label, input, li {
     cursor: none;
 }
 }
-@media screen and (max-height: 1400px) and (min-width:820px){
+@media screen and (max-height: 1400px) and (max-width:820px){
     .svgIcon{
         font-size: 2rem;
     }
