@@ -14,7 +14,7 @@ export const getGif= async(key)=>{
 
        }
    })
-//    console.log(gif);
+   console.log(gif);
 }
 
 export const Gif = (props) => {

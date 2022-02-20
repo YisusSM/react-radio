@@ -19,19 +19,19 @@ export const commands = (message, uid, verified, displayname, dispatch, admin) =
         case '/out':
             dispatch(logOut())
             break;
-        // case '/giphy':
-        //     if (uid) {
-        //         if (verified) {
-        //             if (verifyInput(message)) {
-        //                 console.log(words, 'desde /giphy');
-        //                 getGif(words[1]);
-        //                 dispatch(uiChangeVisibilityGifMode(true));
-        //                 //dispatch(insertMessageFirebase(message, displayname, admin))
-        //             } else console.log('mensaje vacio');
+        case '/giphy':
+            if (uid) {
+                if (verified) {
+                    if (verifyInput(message)) {
+                        console.log(words, 'desde /giphy');
+                        getGif(words[1]);
+                        dispatch(uiChangeVisibilityGifMode(true));
+                        //dispatch(insertMessageFirebase(message, displayname, admin))
+                    } else console.log('mensaje vacio');
 
-        //         } else console.log('verifica correo');
-        //     } else dispatch(showError('inicia sesión'))
-        //     break;
+                } else console.log('verifica correo');
+            } else dispatch(showError('inicia sesión'))
+            break;
         default:
             if (uid) {
                 if (verified) {

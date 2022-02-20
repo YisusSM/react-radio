@@ -26,7 +26,7 @@ export const Chat = () => {
         dispatch(uiChangeVisibilityHelp(!help));
     }
     return (
-        <div>
+        <>
             <div className={`chat-container ${!chat ? "hidden" : ""}`}>
                 <div className="chat-container__toolbar">
                     <h6 className="chat-container__toolbar-title">CHAT</h6>
@@ -57,7 +57,7 @@ export const Chat = () => {
                 </div>
 
             </div>
-        </div >
+        </ >
     )
 }
 
