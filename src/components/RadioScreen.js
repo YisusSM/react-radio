@@ -33,17 +33,53 @@ import { loginUser } from '../actions/auth';
 const RadioScreen = () => {
     const dispatch = useDispatch();
     const { background } = useSelector(state => state.ui);
-    console.log(background)
-    const videoMp4 = useMemo(() => [background0Mp4, background1Mp4, background2Mp4, background3Mp4, background4Mp4, background5Mp4, background6Mp4], []);
-    const videoWebm = useMemo(() => [background0Webm, background1Webm, background2Webm, background3Webm, background4Webm, background5Webm, background6Webm], []);
-    const videoBackground = [
-        {
-            id: background,
-            videomp4: videoMp4[background],
-            videowebm: videoWebm[background]
-
-        }
-    ]
+    const videoBackground = useMemo(()=>
+    
+        [
+            {
+                id: 0,
+                videomp4: background0Mp4,
+                videowebm: background0Webm
+    
+            },
+            {
+                id: 1,
+                videomp4: background1Mp4,
+                videowebm: background1Webm
+    
+            },
+            {
+                id: 2,
+                videomp4: background2Mp4,
+                videowebm: background2Webm
+    
+            },
+            {
+                id: 3,
+                videomp4: background3Mp4,
+                videowebm: background3Webm
+    
+            },
+            {
+                id: 4,
+                videomp4: background4Mp4,
+                videowebm: background4Webm
+    
+            },
+            {
+                id: 5,
+                videomp4: background5Mp4,
+                videowebm: background5Webm
+    
+            },
+            {
+                id: 6,
+                videomp4: background6Mp4,
+                videowebm: background6Webm
+    
+            },
+        ]
+    ,[])
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
@@ -84,15 +120,13 @@ const RadioScreen = () => {
 
     const backgroundImage = () => {
         return (
-            videoBackground.map(item => {
-                console.log(item)
-                return <div key={item.id}>
-                    <video autoPlay muted loop >
-                        <source src={item.videowebm} type="video/webm" />
-                        <source src={item.videomp4} type="video/mp4" />
-                    </video>
-                </div>
-            })
+
+            <div key={ videoBackground[background].id}>
+                <video autoPlay muted loop >
+                    <source src={videoBackground[background].videowebm} type="video/webm" />
+                    <source src={videoBackground[background].videomp4} type="video/mp4" />
+                </video>
+            </div>
 
         )
 
