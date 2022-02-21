@@ -27,6 +27,7 @@ export const AudioNav = () => {
                 audioElement.current.play();
                 setTimeout(() => {
                     setLoading(false);
+                    setBtnPlay(!btnPlay);
                 }, 8500);
             } else {
                 setLoading(true);
@@ -36,15 +37,17 @@ export const AudioNav = () => {
                 }, 0.5);
                 setTimeout(() => {
                     setLoading(false);
+                    setBtnPlay(!btnPlay);
                 }, 8000);
 
             }
         }
         else {
             audioElement.current.pause();
+            setBtnPlay(!btnPlay);
             setSrc('null')
         }
-        setBtnPlay(!btnPlay);
+
     }
 
     const openFullscreen = () => {
@@ -60,7 +63,7 @@ export const AudioNav = () => {
     }
 
     useEffect(() => {
-        handleVolumenChange(value/100);
+        handleVolumenChange(value / 100);
         //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -78,8 +81,11 @@ export const AudioNav = () => {
             </div>
             <div className='radio-footer__info-playbtn'>
                 {(loading ? <div className="loader" id="loader"></div> : null)}
-                {btnPlay ? <i className="bi bi-play-fill btnPlay svgIcon" onClick={togglPlayPause}></i> : <i className="bi bi-pause-fill btnPlay svgIcon" onClick={togglPlayPause}></i>}
-                {/* <label onClick={resumeRadio}>Live</label> */}
+                {btnPlay & loading ?
+                    <i className="bi bi-play-fill btnPlay svgIcon" disabled style={{'color':'grey'}}></i> :
+                    btnPlay & !loading ?
+                        <i className="bi bi-play-fill btnPlay svgIcon" onClick={togglPlayPause}></i> :
+                        <i className="bi bi-pause-fill btnPlay svgIcon" onClick={togglPlayPause}></i>}
             </div>
             <div className='radio-footer__info-volume'>
                 <audio ref={audioElement} src={src} ></audio>
@@ -92,7 +98,7 @@ export const AudioNav = () => {
                 }
             </div>
             <div className="radio-footer__info-volume-slider">
-                <Sliderbar value={value} onChange={e => {
+                <Sliderbar value={value} id='slide' onChange={e => {
                     setValue(e.target.value);
                     handleVolumenChange(e.target.value / 100);
                 }} />
