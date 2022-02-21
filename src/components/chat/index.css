@@ -8,8 +8,7 @@ li {
 }
 .card{
     align-content:center;
-    border: 1px solid grey;
-    border-radius: 1px;
+    border: 1px solid rgba(255,255,255,0.12);
     overflow-x: hidden;
     margin: 5px 10px 0px 15px;
 }
