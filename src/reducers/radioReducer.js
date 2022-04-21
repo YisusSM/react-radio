@@ -1,8 +1,8 @@
 import { types } from '../types/types';
 
 const initialState = {
-    name: 'feliz',
-    author: 'cumple',
+    name: '',
+    author: '',
     historySong: [],
     listeners: 0
 }
