@@ -16,7 +16,7 @@ export const commands = (message, uid, verified, displayname, dispatch, admin) =
         case '/register':
             dispatch(registerWithEmailAndPassword(words[2], words[3], words[1]));
             break;
-        case '/out':
+        case '/logout':
             dispatch(logOut())
             break;
         case '/giphy':
